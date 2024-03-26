@@ -13,36 +13,36 @@ void ordenarNumeros(int *inteiro, int QTD){
     }
 }
 
-int main(int argc, char *arqv[]){
+int main(int argc, char *argv[]){
 
-
+    double media = 0.0;
+    int QTD =0 ;
+    int *inteiro;
+    int menor =0 , maior = 0 ;
 
   if (argc == 1 ){
     printf("digite algo!");
   }else{
-    printf("Numeros recebidos : ");
-    
-    for(int i =1 ; i < argc; i++){
-        printf("%s ",arqv[i]);
+ 
+            QTD = argc -1;
+            inteiro = (int *)malloc(QTD * sizeof(int));
 
-            int QTD = argc -1;
-            int *inteiro = (int *)malloc(QTD * sizeof(int));
-
-            double media = 0.0;
+            
             for (int i=0; i =QTD ;i++){
-                media +=inteiro[i];
+                inteiro[i-1] = atoi(argv[i]);
+                media +=inteiro[i-1];
             }
-            media /=QTD;
 
-            int menor = inteiro[0];
-            int maior = inteiro[0];
+            media /= QTD;
+            menor = maior = inteiro[0];
+            
             
             for (int i =1; i<argc ; i++){
-                inteiro[i-1] = atoi(arqv[i]);
+                inteiro[i-1] = atoi(argv[i]);
                 media += inteiro [i -1];
 
                     if (i == 1 ){
-                    menor = maior = inteiro [i-1];
+                    menor = maior = inteiro [0];
                     }else{
                         if(menor > inteiro [i-1]){
                             menor = inteiro [i-1];
@@ -52,11 +52,11 @@ int main(int argc, char *arqv[]){
                 }
             }                
         }    
-    }
+    
 media /= QTD;  
 ordenarNumeros(inteiro,QTD);
 
-printf("QTD de numeros digitados:%d",QTD);
+printf("QTD de numeros digitados:%d", QTD);
 printf("Media: %.1f\n",media);
 printf("Maior: %d",maior );
 printf("Menor: %d",menor );
@@ -69,9 +69,9 @@ printf("\n");
 free(inteiro);
 
     return 0;
-} 
+}
 
-// int a = atoi(arqv[1]);
-    // int b = atoi(arqv[2]);
+// int a = atoi(argv[1]);
+    // int b = atoi(argv[2]);
 
     // printf ("Numeros: %d %d", a, b);

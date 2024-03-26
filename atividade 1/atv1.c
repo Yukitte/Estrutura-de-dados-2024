@@ -3,7 +3,7 @@
 
 void ordenarNumeros(int *inteiro, int QTD){
     for (int i =0; i <QTD -1; i++){
-        for (int j =0;j<QTD      -i -1 ;j++){
+        for (int j =0;j<QTD -i -1;j++){
             if (inteiro[j]>inteiro[j+1]){
                 int temp = inteiro[j];
                 inteiro[j] = inteiro[j+1];
