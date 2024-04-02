@@ -6,7 +6,6 @@ int main(int argc, char *argv[]) {
         printf("Uso: %s <numero>\n", argv[0]);
         return 1;
     }
-
     int primo = 0;
     int numero = atoi(argv[1]);
 
@@ -21,7 +20,7 @@ int main(int argc, char *argv[]) {
             break;
         }
     }
-
+        
     if (primo == 0) {
         printf("true\n");
     } else {
