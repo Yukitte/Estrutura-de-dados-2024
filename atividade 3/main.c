@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <bubble_sort.h>
+#include "bubble_sort.h"
 
 int main(int argc , char*argv[]){
     FILE *fp =fopen(argv[1],"r");
@@ -34,7 +34,7 @@ int main(int argc , char*argv[]){
         exit(1);
     }
     for(i=0; i < qtd ; i++){
-        fprintf(saida"%d\n", vetor[i]);
+        fprintf(saida,"%d\n", vetor[i]);
     }
     exit(0);
 }
