@@ -8,16 +8,14 @@ int main(int argc , char* argv[]){
 
     arq = fopen("arq", "r");
 
-    if (arq ==NULL){
+    if (arq == NULL){
         printf("erro ao abrir");
         exit(0);
     }
 
-    while(fscanf(arq, "%s", &txt) != EOF){
-        printf("txt = %s ", txt);
+    while(fscanf(arq, "%[^\n]\n", &txt) != EOF){
+        fprintf(arq,"txt = %s \n  ", txt);
     }
-
-    
     fclose(arq);
 
     return 0;
