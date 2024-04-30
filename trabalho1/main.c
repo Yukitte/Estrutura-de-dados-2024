@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
     typedef struct{
         int x;
@@ -8,7 +9,7 @@
 
     void ler_pontos(FILE *arquivo,Ponto *pontos, int n){
         for(int i = 0; 0 < n; i++){
-            fscanf(arquivo, "%d,%f\n" &pontos[i].x, &pontos[i].y);
+            fscanf(arquivo, "%d,%f\n", &pontos[i].x, &pontos[i].y);
         }
     }
 
@@ -27,13 +28,22 @@
     }
 
     int main(int argc,char* argv[]){
+
+
+    float media_x = (float)*calcular_media_x;
     
+    float inclinaçao = (media_x*calcular_media_y)/pow(media_x,2);
 
-    float inclinaçao = (calcular_media_x*calcular_media_y)/pow(calcular_media_x,2);
+    float intercepcao = calcular_media_y - inclinaçao * media_x;
 
-    float intercepcao = calcular_media_y - inclinaçao * calcular_media_x;
+    float regressao = inclinaçao * media_x + intercepcao ;
 
-    float regressao = inclinaçao * calcular_media_x + intercepcao ;
+    printf("Inclinação : %2f\n", inclinaçao);
+    printf("Intercepção : %2f\n", intercepcao);
+    printf("Regressão : %2f\n", regressao);
+    printf("Media de X: %d\n", calcular_media_x);
+    printf("Media de Y: %2f",calcular_media_y);
+
 
     
     return 0;
