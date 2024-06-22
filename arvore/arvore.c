@@ -3,33 +3,33 @@
 #include "arvore.h"
 
 
-// Função para criar um novo nó
-TreeNode* createNode(int data) {
-    TreeNode* newNode = (TreeNode*) malloc(sizeof(TreeNode));
-    if (newNode == NULL) {
+Arvore_no* criar_no(int data) {
+    Arvore_no* novo_no = (Arvore_no*) malloc(sizeof(Arvore_no));
+    if (novo_no == NULL) {
         perror("Erro ao criar um novo nó.");
         exit(EXIT_FAILURE);
     }
-    newNode->data = data;
-    newNode->left = NULL;
-    newNode->right = NULL;
-    return newNode;
+    novo_no->data = data;
+    novo_no->left = NULL;
+    novo_no->right = NULL;
+    return novo_no;
 }
 
-// Função para inserir nós na árvore binária
-TreeNode* insert(TreeNode* root, int data) {
+
+Arvore_no* inserir(Arvore_no* root, int data) {
     if (root == NULL) {
-        return createNode(data);
+        return criar_no(data);
     } else {
         if (data <= root->data) {
-            root->left = insert(root->left, data);
+            root->left = inserir(root->left, data);
         } else {
-            root->right = insert(root->right, data);
+            root->right = inserir(root->right, data);
         }
         return root;
     }
 }
-void inorder(TreeNode* root) {
+
+void inorder(Arvore_no* root) {
     if (root != NULL) {
         inorder(root->left);
         printf("%d ", root->data);
@@ -37,8 +37,8 @@ void inorder(TreeNode* root) {
     }
 }
 
-// Função para realizar o percurso pré-ordem na árvore binária
-void preorder(TreeNode* root) {
+
+void preorder(Arvore_no* root) {
     if (root != NULL) {
         printf("%d ", root->data);
         preorder(root->left);
@@ -46,8 +46,8 @@ void preorder(TreeNode* root) {
     }
 }
 
-// Função para realizar o percurso pós-ordem na árvore binária
-void postorder(TreeNode* root) {
+
+void postorder(Arvore_no* root) {
     if (root != NULL) {
         postorder(root->left);
         postorder(root->right);
@@ -55,46 +55,48 @@ void postorder(TreeNode* root) {
     }
 }
 
-// Função para buscar um nó na árvore binária
-TreeNode* search(TreeNode* root, int data) {
+
+Arvore_no* busca(Arvore_no* root, int data) {
     if (root == NULL || root->data == data) {
         return root;
     } else if (data < root->data) {
-        return search(root->left, data);
+        return busca(root->left, data);
     } else {
-        return search(root->right, data);
+        return busca(root->right, data);
     }
 }
-TreeNode* minValueNode(TreeNode* node) {
-    TreeNode* current = node;
+
+Arvore_no* minValueNode(Arvore_no* node) {
+    Arvore_no* current = node;
     while (current && current->left != NULL) {
         current = current->left;
     }
     return current;
 }
-TreeNode* deleteNode(TreeNode* root, int data) {
+
+Arvore_no* deletar_no(Arvore_no* root, int data) {
     if (root == NULL) return root;
 
     if (data < root->data) {
-        root->left = deleteNode(root->left, data);
+        root->left = deletar_no(root->left, data);
     } else if (data > root->data) {
-        root->right = deleteNode(root->right, data);
+        root->right = deletar_no(root->right, data);
     } else {
         if (root->left == NULL) {
-            TreeNode* temp = root->right;
+            Arvore_no* temp = root->right;
             free(root);
             return temp;
         } else if (root->right == NULL) {
-            TreeNode* temp = root->left;
+            Arvore_no* temp = root->left;
             free(root);
             return temp;
         }
 
-        TreeNode* temp = minValueNode(root->right);
+        Arvore_no* temp = minValueNode(root->right);
 
         root->data = temp->data;
 
-        root->right = deleteNode(root->right, temp->data);
+        root->right = deletar_no(root->right, temp->data);
     }
     return root;
 }
